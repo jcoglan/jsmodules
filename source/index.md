@@ -1,4 +1,3 @@
----
 title: JavaScript Modules
 ---
 
@@ -26,9 +25,9 @@ var isNode = typeof process !== "undefined" &&
 if (isNode) {
   asap = process.nextTick;
 } else if (typeof setImmediate !== "undefined") {
-  asap = setImmediate;
+  asap = function(fn) { setImmediate(fn) };
 } else {
-  asap = setTimeout;
+  asap = function(fn) { setTimeout(fn, 0) };
 }
 
 export default asap;
@@ -75,9 +74,9 @@ var isNode = typeof process !== "undefined" &&
 if (isNode) {
   asap = process.nextTick;
 } else if (typeof setImmediate !== "undefined") {
-  asap = setImmediate;
+  asap = function(fn) { setImmediate(fn) };
 } else {
-  asap = setTimeout;
+  asap = function(fn) { setTimeout(fn, 0) };
 }
 
 export default asap;
